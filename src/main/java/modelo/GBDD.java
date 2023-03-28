@@ -25,7 +25,7 @@ public class GBDD extends Conexion{
 	}
 	public void insertarUsusario(Usuario usuario) {
 
-		String insertarUsusario = "INSERT INTO usuarios (nombre, dni, codigo) VALUES(?,?,?)";
+		String insertarUsusario = "INSERT INTO usuarios (nombre, dni, codigo, birthdate) VALUES(?,?,?,?)";
 
 		try {
 
@@ -35,7 +35,7 @@ public class GBDD extends Conexion{
 			PSUsuario.setString(1, usuario.getNombre());
 			PSUsuario.setString(2, usuario.getDni());
 			PSUsuario.setString(3, usuario.getCodigo());
-			
+			PSUsuario.setString(4, usuario.getStringBirthDate());
 			PSUsuario.execute();
 
 		} catch (Exception e) {
@@ -62,7 +62,7 @@ public class GBDD extends Conexion{
 				usuario.setNombre(resultSet.getString("nombre"));
 				usuario.setDni(resultSet.getString("dni"));
 				usuario.setCodigo(resultSet.getString("codigo"));
-				
+				usuario.setBirthdate(resultSet.getString("birthdate"));
 				
 			
 
@@ -93,7 +93,7 @@ public class GBDD extends Conexion{
 				usuario.setNombre(resultSet.getString("nombre"));
 				usuario.setDni(resultSet.getString("dni"));
 				usuario.setCodigo(resultSet.getString("codigo"));
-				
+				usuario.setBirthdate(resultSet.getString("birthdate"));
 				
 				return usuario;	
 				
@@ -105,7 +105,7 @@ public class GBDD extends Conexion{
 	}
 	public void modificarUsuario(Usuario usuario) {
 
-		String modificarusuario = "UPDATE usuarios SET  nombre = ? , dni = ? , codigo = ? WHERE id= ?";
+		String modificarusuario = "UPDATE usuarios SET  nombre = ? , dni = ? , codigo = ? , birthdate = ? WHERE id= ?";
 		
 		try {
 
@@ -115,8 +115,8 @@ public class GBDD extends Conexion{
 			PST.setString(1, usuario.getNombre());
 			PST.setString(2, usuario.getDni());
 			PST.setString(3, usuario.getCodigo());
-			PST.setInt(4, usuario.getId());
-			
+			PST.setString(4, usuario.getStringBirthDate());
+			PST.setInt(5, usuario.getId());
 			PST.executeUpdate();
 
 		} catch (Exception e) {

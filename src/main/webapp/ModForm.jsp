@@ -27,6 +27,9 @@
 		<label for="codigo">newcodigo</label>
 		<input type="text" name="codigo" id="" value="${ usuario.getCodigo() }"><br> 
 		
+		<label for="birthdate">birthdate</label>
+		<input type="text" name="birthdate" id="" value="${ usuario.getStringBirthdate() }"><br> 
+		
 		<input type="submit" name="Mod" value="Mod" />
 	</form>
 

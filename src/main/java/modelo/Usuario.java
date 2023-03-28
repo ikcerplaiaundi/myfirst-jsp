@@ -9,14 +9,15 @@ private int id;
 private String nombre;
 private String dni;
 private String codigo;
-public Date birthdate;
+
 public String pattern = "yyyy-MM-dd";
 public SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+public Date birthdate;
 
 public Date getBirthdate() {
 	return  birthdate;
 }
-public String getStringBirthdate() {
+public String getStringBirthDate() {
 	return simpleDateFormat.format(this.birthdate);
 }
 
@@ -44,7 +45,7 @@ public String getPattern() {
 
 public void setPattern(String pattern) {
 	this.pattern = pattern;
-	String auxdate = getStringBirthdate();
+	String auxdate = getStringBirthDate();
 	this.simpleDateFormat=new SimpleDateFormat(pattern);
 	this.setBirthdate(auxdate);
 }

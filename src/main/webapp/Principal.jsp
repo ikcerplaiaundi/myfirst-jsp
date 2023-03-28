@@ -18,39 +18,7 @@
 </head>
 <body>
 
-<%
-	
-	// ejemplo de datos a ignorar por el momento
 
-	/*
-	out.print("<a href=\"EjemploDeDato"); 
-	int id = (int)request.getAttribute("id");
-	String[] datos = (String[])request.getAttribute("datos");
-
-	//for (String dato : datos) {
-	//	out.println("<p>"+dato+"</p><br>");
-	//} 
-
-	//int[] ids = (int[])request.getAttribute("ids");
-	 
-
-	 
-	datos[id]="true";
-
-	out.print("?datos0="+datos[0]);
-
-	 int i =1;
-	for (String dato : datos) {
-	out.print("&"+"dato"+i+"="+dato);
-	i++;
-	}
-	if(datos[id].equals("true")){
-	out.print("\">"+datos[id]+" previo</a>");
-	}else{
-	out.print("\">"+datos[id]+"</a>"); 
-
-	} */
-	%>
 
 	<h1>formulario</h1>
 	
@@ -78,7 +46,7 @@
 		<%
 		}
 		%>
-		<a href="inserUsuario">insertar nuevo</a>
+		<a href="InserUsuario">insertar nuevo</a>
 	
 	
 	

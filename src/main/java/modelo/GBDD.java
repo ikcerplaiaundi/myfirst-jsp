@@ -25,17 +25,18 @@ public class GBDD extends Conexion{
 	}
 	public void insertarUsusario(Usuario usuario) {
 
-		String insertarUsusario = "INSERT INTO usuarios (id, nombre,dni,codigo) VALUES(?,?,?,?)";
+		String insertarUsusario = "INSERT INTO usuarios (nombre, dni, codigo) VALUES(?,?,?)";
 
 		try {
 
 			PreparedStatement PSUsuario = super.cn.prepareStatement(insertarUsusario);
 
-			PSUsuario.setInt(1, usuario.getId());
-			PSUsuario.setString(2, usuario.getNombre());
-			PSUsuario.setString(3, usuario.getDni());
-			PSUsuario.setString(4, usuario.getCodigo());
 			
+			PSUsuario.setString(1, usuario.getNombre());
+			PSUsuario.setString(2, usuario.getDni());
+			PSUsuario.setString(3, usuario.getCodigo());
+			
+			PSUsuario.execute();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,7 +78,7 @@ public class GBDD extends Conexion{
 	}
 	public void modificarUsuario(Usuario usuario) {
 
-		String modificarHotel = "UPDATE usuarios SET , nombre = ?, dni = ?,  WHERE id= ?";
+		String modificarHotel = "UPDATE usuarios SET  nombre = ?, dni = ?,  WHERE id= ?";
 		
 		try {
 

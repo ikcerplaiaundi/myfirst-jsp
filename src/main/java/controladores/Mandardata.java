@@ -43,14 +43,7 @@ public class Mandardata extends HttpServlet {
 		request.setAttribute("usuarios", usuarios);
 		// a que jsp?
 		request.getRequestDispatcher("Principal.jsp").forward(request, response);
-/*
-		if(request.getParameter("delete_id") != null) {
-			gdbb.abrirConexion();
-			gdbb.eliminarUsusario(Integer.parseInt(request.getParameter("delete_id")));
-			gdbb.cerrarConexion();
-		}
-		
-		*/
+
 		
 		
 		
@@ -66,7 +59,6 @@ public class Mandardata extends HttpServlet {
 		GBDD gdbb =new GBDD();
 		String idString = request.getParameter("id");
 		if(idString!=null) {
-			System.out.println("estra");
 			gdbb.abrirConexion();
 			gdbb.eliminarUsusario(Integer.parseInt(idString));
 			gdbb.cerrarConexion();

@@ -76,22 +76,48 @@ public class GBDD extends Conexion{
 
 		return usuarios;
 	}
+	public Usuario mostrarUsuario(int id) {
+
+		String selectUsuarios = "SELECT * FROM usuarios WHERE id= ?";
+
+		Usuario usuario = new Usuario();
+
+		try {
+
+			PreparedStatement mostrarUsuarios = super.cn.prepareStatement(selectUsuarios);
+			mostrarUsuarios.setInt(1, id);
+			ResultSet resultSet = mostrarUsuarios.executeQuery();
+			resultSet.next();
+			
+				usuario.setId(resultSet.getInt("id"));
+				usuario.setNombre(resultSet.getString("nombre"));
+				usuario.setDni(resultSet.getString("dni"));
+				usuario.setCodigo(resultSet.getString("codigo"));
+				
+				
+				return usuario;	
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 	public void modificarUsuario(Usuario usuario) {
 
-		String modificarHotel = "UPDATE usuarios SET  nombre = ?, dni = ?,  WHERE id= ?";
+		String modificarusuario = "UPDATE usuarios SET  nombre = ? , dni = ? , codigo = ? WHERE id= ?";
 		
 		try {
 
-			PreparedStatement Ususario = super.cn.prepareStatement(modificarHotel);
-
+			PreparedStatement PST = super.cn.prepareStatement(modificarusuario);
 			
-			Ususario.setString(1, usuario.getNombre());
-			Ususario.setString(2, usuario.getDni());
-			Ususario.setString(3, usuario.getCodigo());
-			Ususario.setInt(4, usuario.getId());
 			
-
-			Ususario.executeUpdate();
+			PST.setString(1, usuario.getNombre());
+			PST.setString(2, usuario.getDni());
+			PST.setString(3, usuario.getCodigo());
+			PST.setInt(4, usuario.getId());
+			
+			PST.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();

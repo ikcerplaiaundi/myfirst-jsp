@@ -3,7 +3,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,30 +23,27 @@
 
 	<h1>formulario</h1>
 	
-		<%
-		ArrayList <Usuario> usuarios = (ArrayList <Usuario>) request.getAttribute("usuarios");
-		for (Usuario usuario : usuarios) {
-		%>
-			<form action="Mandardata" method="post">
+		
+		<c:forEach items="${usuarios}" var="usuario">
+			<form action="Principal" method="post">
 				<label for="id">id</label>
 				<input type="text"  
-				name="id" id="<%out.print(usuario.getId());%>" 
-				value="<%out.print(usuario.getId());%>">
+				name="id" id="${usuario.getId()}" 
+				value="${usuario.getId()}">
 			
 			
-				<label for="name">El name es(<%out.print(" " + usuario.getNombre());%>) </label> 
+				<label for="name">El name es(${usuario.getNombre()}) </label> 
 			
 				
-				<input type="submit" name="delete<%out.print(usuario.getId());%>" value="delete"/>
+				<input type="submit" name="delete${usuario.getId()}" value="delete"/>
+				<a href="ModUsuario?id=${usuario.getId()}">mod este</a>
 				
 				
-				
-			</form><br>
+			</form>
+			<br>
 			
-			
-		<%
-		}
-		%>
+		</c:forEach>
+		
 		<a href="InserUsuario">insertar nuevo</a>
 	
 	

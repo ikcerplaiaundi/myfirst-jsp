@@ -30,6 +30,10 @@ public String getCodigo() {
 public void setCodigo(String codigo) {
 	this.codigo = codigo;
 }
+@Override
+public String toString() {
+	return "Usuario [id=" + id + ", nombre=" + nombre + ", dni=" + dni + ", codigo=" + codigo + "]";
+}
 
 
 

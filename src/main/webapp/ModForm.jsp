@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="modelo.Usuario"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,25 +14,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>insertar usuario</h1>
-	<br>
-	<br>
-	<form action="InserUsuario" method="post">
-	
-		<label for="nombre">newnombre</label> 
-			<input type="text" name="nombre" id="" value="nombre"><br> 
-			
+	<form action="ModUsuario" method="post">
+		<label for="nombre">id</label> 
+		<input type="text" name="id" id="" value="${ usuario.getId() }"><br> 
+		
+		<label for="nombre">newnombre</label>
+		<input type="text" name="nombre" id="" value="${ usuario.getNombre() }"><br>
+
 		<label for="dni">newdni</label> 
-			<input type="text" name="dni" id=""value="dni"><br> 
-			
-		<label for="codigo">newcodigo</label> 
-			<input type="text" name="codigo" id="" value="codigo"> <br> 
-			
-			
-		<input type="submit" name="inset"value="inset" />
+		<input type="text" name="dni" id="" value="${ usuario.getDni() }"><br> 
+		
+		<label for="codigo">newcodigo</label>
+		<input type="text" name="codigo" id="" value="${ usuario.getCodigo() }"><br> 
+		
+		<input type="submit" name="Mod" value="Mod" />
 	</form>
-	<br>
-	<a href="principal">volver</a>
+
+	<a href="Principal">volver</a>
 
 
 	<script

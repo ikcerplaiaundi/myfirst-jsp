@@ -13,16 +13,16 @@ import modelo.GBDD;
 import modelo.Usuario;
 
 /**
- * Servlet implementation class InserUsuario
+ * Servlet implementation class ModUsuario
  */
-@WebServlet("/InserUsuario")
-public class InserUsuario extends HttpServlet {
+@WebServlet("/ModUsuario")
+public class ModUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InserUsuario() {
+    public ModUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,10 +31,18 @@ public class InserUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		GBDD gdbb =new GBDD();
+		Usuario usuario= new Usuario();
+		usuario.setId(Integer.parseInt(request.getParameter("id")));
 		
-		
+		gdbb.abrirConexion();
+		 usuario = gdbb.mostrarUsuario(usuario.getId());
+		gdbb.cerrarConexion();
+		// enviar datos
+		request.setAttribute("usuario", usuario);
 		// a que jsp?
-				request.getRequestDispatcher("InsertForm.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("ModForm.jsp").forward(request, response);
 	}
 
 	/**
@@ -44,19 +52,27 @@ public class InserUsuario extends HttpServlet {
 		GBDD gdbb =new GBDD();
 		Usuario usuario = new Usuario();
 		
-		//abro conexion
-		gdbb.abrirConexion();
-		//inserto usuarion nuevo
+		//inserto usuario nuevo
+		
+		usuario.setId(Integer.parseInt(request.getParameter("id")));
 		
 		usuario.setNombre(request.getParameter("nombre"));
-		usuario.setDni(request.getParameter("dni"));
-		usuario.setCodigo(request.getParameter("codigo"));
 		
-		gdbb.insertarUsusario(usuario);
+		usuario.setDni(request.getParameter("dni"));
+		
+		usuario.setCodigo(request.getParameter("codigo"));
+				
+		//abro conexion
+		gdbb.abrirConexion();
+		
+		gdbb.modificarUsuario(usuario);
+		
 		//cierro conexion
 		gdbb.cerrarConexion();
-		//doGet(request, response);
-		request.getRequestDispatcher("Principal").forward(request, response);
+		
+		response.sendRedirect("ModUsuario?id="+usuario.getId());
+		
+		
 	}
 
 }

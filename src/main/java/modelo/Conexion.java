@@ -1,5 +1,5 @@
 package modelo;
-//prueba en githbu
+
 import java.sql.*;
 
 public class Conexion {

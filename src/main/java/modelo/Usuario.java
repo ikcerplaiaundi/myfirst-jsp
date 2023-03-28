@@ -1,10 +1,62 @@
 package modelo;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Usuario {
 private int id;
 private String nombre;
 private String dni;
 private String codigo;
+public Date birthdate;
+public String pattern = "yyyy-MM-dd";
+public SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+public Date getBirthdate() {
+	return  birthdate;
+}
+public String getStringBirthdate() {
+	return simpleDateFormat.format(this.birthdate);
+}
+
+public String getStringBirthDate(String patern) {
+	this.setPattern(patern);
+	return simpleDateFormat.format(this.birthdate);
+}
+
+public void setBirthdate(Date birthdatedate) {
+	this.birthdate = birthdatedate;
+}
+
+public void setBirthdate(String birthdatedate) {
+	try {
+		this.birthdate = (Date) simpleDateFormat.parse(birthdatedate);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+}
+
+public String getPattern() {
+	return pattern;
+	
+}
+
+public void setPattern(String pattern) {
+	this.pattern = pattern;
+	String auxdate = getStringBirthdate();
+	this.simpleDateFormat=new SimpleDateFormat(pattern);
+	this.setBirthdate(auxdate);
+}
+
+
+public SimpleDateFormat getSimpleDateFormat() {
+	return simpleDateFormat;
+}
+
+public void setSimpleDateFormat(SimpleDateFormat simpleDateFormat) {
+	this.simpleDateFormat = simpleDateFormat;
+}
 
 public int getId() {
 	return id;

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.GBDD;
+import modelo.Rol;
 import modelo.Usuario;
 
 /**
@@ -37,8 +38,10 @@ public class ModUsuario extends HttpServlet {
 		
 		gdbb.abrirConexion();
 		 usuario = gdbb.mostrarUsuario(usuario.getId());
+		 ArrayList <Rol> roles =gdbb.mostrarArrayRol();
 		gdbb.cerrarConexion();
 		// enviar datos
+		request.setAttribute("roles", roles);
 		request.setAttribute("usuario", usuario);
 		// a que jsp?
 		

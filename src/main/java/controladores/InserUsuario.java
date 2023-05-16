@@ -51,7 +51,7 @@ public class InserUsuario extends HttpServlet {
 		usuario.setNombre(request.getParameter("nombre"));
 		usuario.setDni(request.getParameter("dni"));
 		usuario.setCodigo(request.getParameter("codigo"));
-		
+		usuario.setBirthdate(request.getParameter("Birthdate"));
 		gdbb.insertarUsusario(usuario);
 		//cierro conexion
 		gdbb.cerrarConexion();

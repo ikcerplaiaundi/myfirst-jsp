@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="modelo.Usuario"%>
+<%@page import="modelo.DTO.Usuario"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@
 		<input type="text" name="codigo" id="" value="${ usuario.getCodigo() }"><br> 
 		
 		<label for="birthdate">birthdate</label>
-		<input type="text" name="birthdate" id="" value="${ usuario.getStringBirthdate() }"><br> 
+		<input type="text" name="birthdate" id="" value="${ usuario.getStringBirthDate() }"><br> 
 		
 		<input type="submit" name="Mod" value="Mod" />
 	</form>

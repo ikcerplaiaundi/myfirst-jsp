@@ -25,7 +25,7 @@ public class GBDD extends Conexion{
 	}
 	public void insertarUsusario(Usuario usuario) {
 
-		String insertarUsusario = "INSERT INTO usuarios (nombre, dni, codigo, birthdate) VALUES(?,?,?,?)";
+		String insertarUsusario = "INSERT INTO usuarios (nombre, dni, codigo, birthdate,id_rol) VALUES(?,?,?,?,?)";
 
 		try {
 
@@ -36,6 +36,7 @@ public class GBDD extends Conexion{
 			PSUsuario.setString(2, usuario.getDni());
 			PSUsuario.setString(3, usuario.getCodigo());
 			PSUsuario.setString(4, usuario.getStringBirthDate());
+			PSUsuario.setInt(5, usuario.getId_rol());
 			PSUsuario.execute();
 
 		} catch (Exception e) {
@@ -63,7 +64,7 @@ public class GBDD extends Conexion{
 				usuario.setDni(resultSet.getString("dni"));
 				usuario.setCodigo(resultSet.getString("codigo"));
 				usuario.setBirthdate(resultSet.getString("birthdate"));
-				
+				usuario.setId_rol(resultSet.getInt("id_rol"));
 			
 
 				usuarios.add(usuario);
@@ -76,36 +77,62 @@ public class GBDD extends Conexion{
 
 		return usuarios;
 	}
-	public Usuario mostrarUsuario(int id) {
+	public ArrayList<Rol> mostrarArrayRol() {
 
-		String selectUsuarios = "SELECT * FROM usuarios WHERE id= ?";
+		String selectRol = "SELECT * FROM roles";
 
-		Usuario usuario = new Usuario();
+		ArrayList<Rol> Rols = new ArrayList<Rol>();
 
 		try {
 
+			PreparedStatement mostrarRol = super.cn.prepareStatement(selectRol);
+			ResultSet resultSet = mostrarRol.executeQuery(selectRol);
+
+			while (resultSet.next()) {
+
+				Rol rol = new Rol();
+
+				rol.setId(resultSet.getInt("id"));
+				rol.setNombre(resultSet.getString("nombre"));
+				
+			
+
+				Rols.add(rol);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return Rols;
+	}
+	public String mostrarUsuario(int id) {
+		
+		
+		String selectUsuarios = "SELECT * FROM SYSTEM.EMPLEADOS ";
+
+		String i ="aaa";
+		try {
+
 			PreparedStatement mostrarUsuarios = super.cn.prepareStatement(selectUsuarios);
-			mostrarUsuarios.setInt(1, id);
+			//mostrarUsuarios.setInt(1, id);
 			ResultSet resultSet = mostrarUsuarios.executeQuery();
 			resultSet.next();
 			
-				usuario.setId(resultSet.getInt("id"));
-				usuario.setNombre(resultSet.getString("nombre"));
-				usuario.setDni(resultSet.getString("dni"));
-				usuario.setCodigo(resultSet.getString("codigo"));
-				usuario.setBirthdate(resultSet.getString("birthdate"));
+				i =resultSet.getString("NOMBRE_EMPLEADO");
 				
-				return usuario;	
+				
 				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return null;
+		return i;
 	}
 	public void modificarUsuario(Usuario usuario) {
 
-		String modificarusuario = "UPDATE usuarios SET  nombre = ? , dni = ? , codigo = ? , birthdate = ? WHERE id= ?";
+		String modificarusuario = "UPDATE usuarios SET  nombre = ? , dni = ? , codigo = ? , birthdate = ? , id_rol = ? WHERE id= ?";
 		
 		try {
 
@@ -116,7 +143,8 @@ public class GBDD extends Conexion{
 			PST.setString(2, usuario.getDni());
 			PST.setString(3, usuario.getCodigo());
 			PST.setString(4, usuario.getStringBirthDate());
-			PST.setInt(5, usuario.getId());
+			PST.setInt(5, usuario.getId_rol());
+			PST.setInt(6, usuario.getId());
 			PST.executeUpdate();
 
 		} catch (Exception e) {

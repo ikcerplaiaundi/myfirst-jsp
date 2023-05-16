@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.GBDD;
+import modelo.Rol;
 import modelo.Usuario;
 
 /**
@@ -35,19 +36,19 @@ public class Principal extends HttpServlet {
 			throws ServletException, IOException {
 		GBDD gdbb =new GBDD();
 		
-		
+	
 		gdbb.abrirConexion();
 		ArrayList <Usuario> usuarios = gdbb.mostrarArrayUsuario();
+		System.out.println(gdbb.mostrarUsuario(1));
+		
 		gdbb.cerrarConexion();
+		
 		// enviar datos
+		
 		request.setAttribute("usuarios", usuarios);
 		// a que jsp?
 		request.getRequestDispatcher("Principal.jsp").forward(request, response);
 
-		
-		
-		
-		
 		
 	}
 

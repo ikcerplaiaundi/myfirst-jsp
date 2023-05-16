@@ -14,11 +14,19 @@ public String pattern = "yyyy-MM-dd";
 public SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 public Date birthdate;
 
+private int id_rol;
+
+public int getId_rol() {
+	return id_rol;
+}
+public void setId_rol(int id_rol) {
+	this.id_rol = id_rol;
+}
 public Date getBirthdate() {
 	return  birthdate;
 }
 public String getStringBirthDate() {
-	return simpleDateFormat.format(this.birthdate);
+	return ""+simpleDateFormat.format(this.birthdate);
 }
 
 public String getStringBirthDate(String patern) {
@@ -85,8 +93,10 @@ public void setCodigo(String codigo) {
 }
 @Override
 public String toString() {
-	return "Usuario [id=" + id + ", nombre=" + nombre + ", dni=" + dni + ", codigo=" + codigo + "]";
+	return "Usuario [id=" + id + ", nombre=" + nombre + ", dni=" + dni + ", codigo=" + codigo + ", pattern=" + pattern
+			+ ", simpleDateFormat=" + simpleDateFormat + ", birthdate=" + birthdate + ", id_rol=" + id_rol + "]";
 }
+
 
 
 

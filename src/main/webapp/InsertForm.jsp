@@ -15,7 +15,7 @@
 	<h1>insertar usuario</h1>
 	<br>
 	<br>
-	<form action="InserUsuario" method="post">
+	<form action="InserUsuario" class="border border-1 rounded-3 border border-secondary" method="post">
 	
 		<label for="nombre">newnombre</label> 
 			<input type="text" name="nombre" id="" value="nombre"><br> 
@@ -25,7 +25,12 @@
 			
 		<label for="codigo">newcodigo</label> 
 			<input type="text" name="codigo" id="" value="codigo"> <br> 
+		
+		<label for="Birthdate">newcodigo</label> 
+			<input type="text" name="Birthdate" id="" value="2000-01-01"> <br> 
 			
+		<label for="id_rol">id_rol</label> 
+			<input type="text" name="id_rol" id=""value="1"><br> 
 			
 		<input type="submit" name="inset"value="inset" />
 	</form>

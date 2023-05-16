@@ -1,7 +1,7 @@
 <%@page import="org.eclipse.jdt.internal.compiler.ast.ForeachStatement"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="modelo.Usuario"%>
+<%@page import="modelo.DTO.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -36,6 +36,7 @@
 			
 				
 				<input type="submit" name="delete${usuario.getId()}" value="delete"/>
+				
 				<a href="ModUsuario?id=${usuario.getId()}">mod este</a>
 				
 				
